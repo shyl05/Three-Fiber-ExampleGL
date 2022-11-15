@@ -1,35 +1,10 @@
 /* eslint-disable prettier/prettier */
-import React, { useRef, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber/native';
-
-function Box(props) {
-  const mesh = useRef(null);
-  const [hovered, setHover] = useState(false);
-  const [active, setActive] = useState(false);
-  useFrame((state, delta) => (mesh.current.rotation.x += 0.02));
-  return (
-    <mesh
-      {...props}
-      ref={mesh}
-      scale={active ? 1.5 : 1}
-      onClick={(event) => setActive(!active)}
-      onPointerOver={(event) => setHover(true)}
-      onPointerOut={(event) => setHover(false)}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
-    </mesh>
-  );
-}
+import React from 'react';
+import { ScrollView } from 'react-native';
+import Boxes from './Examples/Boxes';
 
 export default function App() {
   return (
-    <Canvas>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      <Box position={[-1.2, 0, 0]} />
-      <Box position={[1.2, 0, 0]} />
-      <Box position={[0, 1.4, 1.4]} />
-      <Box position={[0, -1.4, -1.4]} />
-    </Canvas>
+    <Boxes/>
   );
 }
